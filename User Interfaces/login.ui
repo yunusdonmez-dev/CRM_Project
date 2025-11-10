@@ -136,7 +136,7 @@ color: white;</string>
          <string/>
         </property>
         <property name="echoMode">
-         <enum>QLineEdit::Normal</enum>
+         <enum>QLineEdit::Password</enum>
         </property>
         <property name="placeholderText">
          <string>Password...</string>
@@ -296,8 +296,20 @@ text-decoration: underline;</string>
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:rgba(255, 255, 255, 0);
-color:rgb(0, 0, 0)</string>
+      <string notr="true">background-color: transparent;
+color: rgb(0, 0, 0);
+
+/* make the checkbox box green when checked */
+QCheckBox::indicator:checked {
+    background-color: green;
+    border: 1px solid darkgreen;
+}
+
+/* optional — make the box visible when unchecked */
+QCheckBox::indicator:unchecked {
+    background-color: transparent;
+    border: 1px solid green;
+}</string>
      </property>
      <property name="text">
       <string>Show</string>

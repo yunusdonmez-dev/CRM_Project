@@ -1,6 +1,6 @@
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets, uic
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 import os
 import pandas as pd
 from session import Session
@@ -19,7 +19,7 @@ class LoginWindow(QMainWindow):
         uic.loadUi(login_ui_path, self)
         self.button_login.clicked.connect(self.login)
         self.button_exit.clicked.connect(self.exit)
-        
+        self.checkBox.toggled.connect(self.toggle_password_visibility)
     def exit(self):
         self.close()
 
@@ -48,3 +48,12 @@ class LoginWindow(QMainWindow):
         if not found:
             Session.role = None
             self.error.setText(" Incorrect Username or Password!")
+
+    
+    def toggle_password_visibility(self, checked):
+        if checked:
+            # show password text
+            self.Password.setEchoMode(QLineEdit.EchoMode.Normal)
+        else:
+            # hide password (mask it)
+            self.Password.setEchoMode(QLineEdit.EchoMode.Password)
